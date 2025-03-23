@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 // Define route matchers for better readability
 const isPublicRoute = createRouteMatcher(["/"]);
 const isOnboardingRoute = createRouteMatcher(["/onboarding"]);
-const isPrivateRoute = createRouteMatcher(["/home"]);
+const isPrivateRoute = createRouteMatcher(["/home", "/form"]);
 
 export default clerkMiddleware(async (auth, req: NextRequest) => {
   const { userId, orgId } = await auth();
@@ -23,8 +23,8 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
       : NextResponse.redirect(new URL("/onboarding", req.url));
   }
 
-  // If authenticated with an organization, ensure they are on a private route
-  if (!isPrivateRoute(req)) {
+  // If authenticated with an organization, ensure they are on a private routea
+  if (!isPrivateRoute(req) && !req.nextUrl.pathname.startsWith("/api")) {
     return NextResponse.redirect(new URL("/home", req.url));
   }
 
