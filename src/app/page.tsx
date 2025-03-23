@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-50">
-      <header className="border-b border-zinc-200">
+    <div className="flex flex-col min-h-screen">
+      <header className="border-b border-zinc-200 text-white">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           <Link href="/" className="flex items-center gap-2">
             <svg
@@ -17,7 +17,7 @@ export default function LandingPage() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="h-6 w-6 text-zinc-700"
+              className="h-6 w-6"
             >
               <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
               <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
@@ -26,37 +26,25 @@ export default function LandingPage() {
               <path d="M22 7v3a2 2 0 0 1-2 2v0a2 2 0 0 1-2-2V7" />
               <path d="M4 7v3a2 2 0 0 1-2 2v0a2 2 0 0 1-2-2V7" />
             </svg>
-            <span className="font-medium text-zinc-900">Rarome</span>
+            <span className="font-medium">Rarome</span>
           </Link>
           <nav className="hidden md:flex gap-6">
-            <Link
-              href="#"
-              className="text-sm font-medium text-zinc-700 hover:text-zinc-900"
-            >
+            <Link href="#" className="text-sm font-medium">
               Features
             </Link>
-            <Link
-              href="#"
-              className="text-sm font-medium text-zinc-700 hover:text-zinc-900"
-            >
+            <Link href="#" className="text-sm font-medium">
               Pricing
             </Link>
-            <Link
-              href="#"
-              className="text-sm font-medium text-zinc-700 hover:text-zinc-900"
-            >
+            <Link href="#" className="text-sm font-medium">
               Documentation
             </Link>
-            <Link
-              href="#"
-              className="text-sm font-medium text-zinc-700 hover:text-zinc-900"
-            >
+            <Link href="#" className="text-sm font-medium">
               About
             </Link>
           </nav>
           <div className="flex items-center gap-4">
             <SignInButton />
-            <SignUpButton />
+            <SignUpButton unsafeMetadata={{ onboardingComplete: false }} />
           </div>
         </div>
       </header>
@@ -88,7 +76,7 @@ export default function LandingPage() {
                   width={550}
                   height={550}
                   alt="Modern School Campus"
-                  className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:aspect-square relative z-10"
+                  className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center  relative z-10"
                 />
               </div>
             </div>

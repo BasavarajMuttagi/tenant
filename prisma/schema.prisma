@@ -14,14 +14,13 @@ datasource db {
 }
 
 model School {
-  id             String @id @default(uuid())
-  name           String
-  description    String
-  address        String
-  country        String
-  state          String
-  city           String
-  phoneNumber    String
-  contactDetails String
-  orgId          String @unique
+  id          String @id @default(uuid())
+  name        String
+  description String
+  address     String
+  country     String
+  state       String
+  city        String
+  phone       String
+  orgId       String @unique
 }
