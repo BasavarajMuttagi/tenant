@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default async function Home() {
   const { orgId } = await auth();
-  console.log(orgId);
   if (!orgId) return;
   const school = await prisma.school.findFirst({ where: { orgId } });
 

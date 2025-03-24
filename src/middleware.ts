@@ -7,10 +7,12 @@ const isOnboardingRoute = createRouteMatcher(["/onboarding"]);
 const isPrivateRoute = createRouteMatcher(["/home", "/form"]);
 
 export default clerkMiddleware(async (auth, req: NextRequest) => {
-  const { userId, orgId } = await auth();
-
+  const { userId, orgId, orgSlug } = await auth();
+  const host = req.nextUrl.host;
+  const pathname = req.nextUrl.pathname;
   // If unauthenticated, redirect users to landing page
   if (!userId) {
+    console.log(req.nextUrl);
     return isPublicRoute(req)
       ? NextResponse.next()
       : NextResponse.redirect(new URL("/", req.url));
@@ -25,9 +27,11 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
 
   // If authenticated with an organization, ensure they are on a private routea
   if (!isPrivateRoute(req) && !req.nextUrl.pathname.startsWith("/api")) {
-    return NextResponse.redirect(new URL("/home", req.url));
+    console.log(pathname);
+    return NextResponse.redirect(
+      new URL(`http://${orgSlug}.${host}/home`, req.url)
+    );
   }
-
   return NextResponse.next();
 });
 
